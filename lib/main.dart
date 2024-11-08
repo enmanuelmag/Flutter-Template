@@ -45,7 +45,7 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ThemeModeState currentTheme = ref.watch(themeProvider);
+    final ThemeMode currentThemeMode = ref.watch(myThemeProvider);
 
     return MaterialApp(
       /// Localization is not available for the title.
@@ -54,7 +54,7 @@ class MyApp extends ConsumerWidget {
       /// Theme stuff
       theme: Style.lightTheme,
       darkTheme: Style.darkTheme,
-      themeMode: currentTheme.themeMode,
+      themeMode: currentThemeMode,
 
       /// Localization stuff
       localizationsDelegates: context.localizationDelegates,

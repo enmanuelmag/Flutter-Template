@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../states/widgets/bottom_nav_bar/bottom_nav_bar_state.dart';
+import '../../states/widgets/bottom_nav_bar_state.dart';
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});

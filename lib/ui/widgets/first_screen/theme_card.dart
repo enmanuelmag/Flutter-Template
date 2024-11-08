@@ -16,13 +16,13 @@ class ThemeCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ThemeModeState state = ref.watch(themeProvider);
+    final ThemeMode currentThemeMode = ref.watch(myThemeProvider);
 
     return Expanded(
       child: Card(
         elevation: 0,
         shadowColor: Theme.of(context).colorScheme.shadow,
-        color: state.themeMode == mode
+        color: currentThemeMode == mode
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.surfaceContainer,
         shape: RoundedRectangleBorder(
@@ -32,12 +32,12 @@ class ThemeCard extends ConsumerWidget {
         child: SizedBox(
           height: 52,
           child: InkWell(
-            onTap: () => ref.watch(themeProvider.notifier).setThemeMode(mode),
+            onTap: () => ref.read(myThemeProvider.notifier).setThemeMode(mode),
             borderRadius: const BorderRadius.all(Style.radiusMd),
             child: Icon(
               icon,
               size: 32,
-              color: state.themeMode != mode
+              color: currentThemeMode != mode
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.onPrimary,
             ),
