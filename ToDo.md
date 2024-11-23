@@ -1,0 +1,12 @@
+Shared Components:
+- [ ] Action Icon (Wrapped of button)
+- [ ] Button
+- [ ] Chip
+- [ ] Confirmation Modal
+- [ ] Number/Currency Input
+- [ ] Date Picker
+- [ ] Gradient List (take virtualized list)
+- [ ] Loader (with text)
+- [ ] Bottom Sheet (Popover)
+- [ ] Select, value, defaultValue, label, name, error, placeholder, items, onChange
+- [ ] Input: with props autocapitalize, label, autoFocus, description, name, disabled, value, placeholder, error, secureText, readyOnly, keyboardType, textContextType, autoComplete, multiline, onBlur (validation maybe), loading, isSearch (to show icon) onChange, onPress.
