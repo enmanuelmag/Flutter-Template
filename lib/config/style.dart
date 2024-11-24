@@ -18,6 +18,8 @@ class Style {
   /// Small circular radius: 8
   static const Radius radiusSm = Radius.circular(8);
 
+  static const double inputHeight = 1.25;
+
   // ===============
   // | Light Theme |
   // ===============

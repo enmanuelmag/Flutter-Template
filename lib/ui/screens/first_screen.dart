@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/input_text.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/select.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -48,6 +50,15 @@ class FirstScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const items = <SelectItem>[
+      SelectItem(value: '1', label: 'One'),
+      SelectItem(value: '2', label: 'Two'),
+      SelectItem(value: '3', label: 'Three'),
+      SelectItem(value: '4', label: 'Four'),
+      SelectItem(value: '5', label: 'Five'),
+      SelectItem(value: '6', label: 'Six'),
+    ];
+
     return Material(
       color: Theme.of(context).colorScheme.surface,
       child: ListView(
@@ -127,6 +138,29 @@ class FirstScreen extends ConsumerWidget {
               ),
             ],
           ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            child: Divider(
+              color: Theme.of(context).dividerColor,
+            ),
+          ),
+
+          InputText(
+            label: 'Label',
+            helperText: 'Helper Text',
+            onChange: (String value) {},
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+            child: Divider(
+              color: Theme.of(context).dividerColor,
+            ),
+          ),
+
+          SelectInput(
+              label: 'Label', items: items, onChange: (String value) {}),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),

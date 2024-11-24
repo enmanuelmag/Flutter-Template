@@ -9,4 +9,4 @@ Shared Components:
 - [ ] Loader (with text)
 - [ ] Bottom Sheet (Popover)
 - [ ] Select, value, defaultValue, label, name, error, placeholder, items, onChange
-- [ ] Input: with props autocapitalize, label, autoFocus, description, name, disabled, value, placeholder, error, secureText, readyOnly, keyboardType, textContextType, autoComplete, multiline, onBlur (validation maybe), loading, isSearch (to show icon) onChange, onPress.
+- [x] Input: with props label, autoFocus, description, name, disabled, value, placeholder, error, secureText, readyOnly, keyboardType, autoComplete, multiline, onBlur (validation maybe), loading, isSearch (to show icon) onChange, onPress.
