@@ -24,7 +24,7 @@ class BottomSheetContainer extends StatelessWidget {
           children: <Widget>[
             if (title != null)
               Column(
-                children: [
+                children: <Widget>[
                   Center(
                     child: Text(
                       title!,
@@ -34,7 +34,7 @@ class BottomSheetContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Separator(
+                  const Separator(
                     horizontal: 18,
                   ),
                 ],

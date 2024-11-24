@@ -8,5 +8,5 @@ Shared Components:
 - [ ] Gradient List (take virtualized list)
 - [ ] Loader (with text)
 - [ ] Bottom Sheet (Popover)
-- [ ] Select, value, defaultValue, label, name, error, placeholder, items, onChange
+- [x] Select, value, defaultValue, label, name, error, placeholder, items, onChange
 - [x] Input: with props label, autoFocus, description, name, disabled, value, placeholder, error, secureText, readyOnly, keyboardType, autoComplete, multiline, onBlur (validation maybe), loading, isSearch (to show icon) onChange, onPress.

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/bottom_sheet_container.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/divider.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 //define items type for SelectInput, this is a list of items, each item has a label and value property
 class SelectItem {
-  final String label;
+  final Widget label;
   final String value;
+  final bool? disabled;
+  final Widget? leading;
+  final Widget? trailing;
 
   const SelectItem({
     required this.label,
     required this.value,
+    this.disabled,
+    this.leading,
+    this.trailing,
   });
 }
 
@@ -44,8 +48,14 @@ class SelectInput extends StatelessWidget {
     final List<ListTile> itemsWidget = items
         .map(
           (SelectItem item) => ListTile(
-            title: Text(item.label),
+            title: item.label,
+            leading: item.leading,
+            trailing: item.trailing,
+            visualDensity: VisualDensity.compact,
+            enabled: item.disabled != true,
             onTap: () {
+              if (item.disabled == true) return;
+
               onChange(item.value);
             },
           ),

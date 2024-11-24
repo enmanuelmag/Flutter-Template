@@ -50,13 +50,11 @@ class FirstScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const items = <SelectItem>[
-      SelectItem(value: '1', label: 'One'),
-      SelectItem(value: '2', label: 'Two'),
-      SelectItem(value: '3', label: 'Three'),
-      SelectItem(value: '4', label: 'Four'),
-      SelectItem(value: '5', label: 'Five'),
-      SelectItem(value: '6', label: 'Six'),
+    const List<SelectItem> items = <SelectItem>[
+      SelectItem(value: '1', label: Text('One')),
+      SelectItem(value: '2', label: Text('Two')),
+      SelectItem(value: '3', label: Text('Three'), disabled: true),
+      SelectItem(value: '4', label: Text('Four')),
     ];
 
     return Material(
