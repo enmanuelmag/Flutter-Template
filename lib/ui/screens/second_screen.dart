@@ -5,6 +5,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_production_boilerplate_riverpod/ui/widgets/widget.barrel.dart';
 
 class SecondScreen extends StatelessWidget {
+  static String path = '/settings';
+
   const SecondScreen({super.key});
 
   @override

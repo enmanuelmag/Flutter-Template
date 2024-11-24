@@ -8,6 +8,8 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 import 'package:flutter_production_boilerplate_riverpod/ui/widgets/widget.barrel.dart';
 
 class FirstScreen extends ConsumerWidget {
+  static String path = '/';
+
   const FirstScreen({super.key});
 
   static const List<bool> infoCardPattern = <bool>[true, false, false, true];

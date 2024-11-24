@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_production_boilerplate_riverpod/config/router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
 import 'states/theme_mode_state.dart';
-import 'ui/screens/skeleton_screen.dart';
 
 /// Try using const constructors as much as possible!
 
@@ -48,21 +48,23 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ThemeMode currentThemeMode = ref.watch(myThemeProvider);
 
-    return MaterialApp(
-      /// Localization is not available for the title.
+    return MaterialApp.router(
+      // Localization is not available for the title.
       title: 'Flutter Boilerplate',
 
-      /// Theme stuff
+      // Theme stuff
       theme: Style.lightTheme,
       darkTheme: Style.darkTheme,
       themeMode: currentThemeMode,
 
-      /// Localization stuff
+      // Localization stuff
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      home: const SkeletonScreen(),
+
+      // Router config
+      routerConfig: routerConfig,
     );
   }
 }
