@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
+
+import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
 import 'states/theme_mode_state.dart';
 import 'ui/screens/skeleton_screen.dart';
@@ -49,7 +50,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       /// Localization is not available for the title.
-      title: 'Flutter Production Boilerplate',
+      title: 'Flutter Boilerplate',
 
       /// Theme stuff
       theme: Style.lightTheme,

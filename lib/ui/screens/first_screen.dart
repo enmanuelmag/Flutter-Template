@@ -1,15 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/input_text.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/select.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import '../widgets/first_screen/info_card.dart';
-import '../widgets/first_screen/theme_card.dart';
-import '../widgets/header.dart';
+import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/widget.barrel.dart';
 
 class FirstScreen extends ConsumerWidget {
   const FirstScreen({super.key});
