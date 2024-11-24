@@ -135,12 +135,7 @@ class FirstScreen extends ConsumerWidget {
             ],
           ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            child: Divider(
-              color: Theme.of(context).dividerColor,
-            ),
-          ),
+          Separator(horizontal: 24, vertical: 8),
 
           InputText(
             label: 'Label',
@@ -148,22 +143,32 @@ class FirstScreen extends ConsumerWidget {
             onChange: (String value) {},
           ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            child: Divider(
-              color: Theme.of(context).dividerColor,
-            ),
-          ),
+          Separator(horizontal: 24, vertical: 8),
 
           SelectInput(
               label: 'Label', items: items, onChange: (String value) {}),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            child: Divider(
-              color: Theme.of(context).dividerColor,
-            ),
+          Separator(horizontal: 24, vertical: 8),
+
+          ButtonExtended(
+            text: 'Button Contained',
+            onPressed: () {},
+            variant: ButtonVariant.contained,
           ),
+
+          ButtonExtended(
+            text: 'Button Outlined',
+            onPressed: () {},
+            variant: ButtonVariant.outlined,
+          ),
+
+          ButtonExtended(
+            text: 'Button Text',
+            onPressed: () {},
+            variant: ButtonVariant.text,
+          ),
+
+          Separator(horizontal: 24, vertical: 8),
 
           /// If no complex grids are required remove the flutter_staggered_grid_view package
           MasonryGridView.builder(

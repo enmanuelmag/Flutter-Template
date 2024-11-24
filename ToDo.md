@@ -7,6 +7,6 @@ Shared Components:
 - [ ] Date Picker
 - [ ] Gradient List (take virtualized list)
 - [ ] Loader (with text)
-- [ ] Bottom Sheet (Popover)
+- [x] Bottom Sheet (Popover)
 - [x] Select, value, defaultValue, label, name, error, placeholder, items, onChange
 - [x] Input: with props label, autoFocus, description, name, disabled, value, placeholder, error, secureText, readyOnly, keyboardType, autoComplete, multiline, onBlur (validation maybe), loading, isSearch (to show icon) onChange, onPress.

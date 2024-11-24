@@ -8,6 +8,7 @@ export './shared/divider.dart';
 export './shared/input_text.dart';
 export './shared/select.dart';
 export './shared/text_divider.dart';
+export './shared/button.dart';
 
 // First Screen
 export './first_screen/info_card.dart';
