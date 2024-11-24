@@ -14,8 +14,8 @@ class BottomSheetContainer extends StatelessWidget {
       controller: ModalScrollController.of(context),
       child: Padding(
         padding: EdgeInsets.only(
-          left: 4,
-          right: 4,
+          left: 12,
+          right: 12,
           bottom: 32,
           top: 16,
         ),
@@ -55,7 +55,12 @@ void showCustomBottomSheet({
   // ignore: inference_failure_on_function_invocation
   showMaterialModalBottomSheet(
     bounce: true,
+    elevation: 10,
+    enableDrag: true,
+    isDismissible: true,
+    animationCurve: Curves.easeInOut,
     context: context,
+    backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(8),

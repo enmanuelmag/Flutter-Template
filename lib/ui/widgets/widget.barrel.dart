@@ -9,6 +9,7 @@ export './shared/input_text.dart';
 export './shared/select.dart';
 export './shared/text_divider.dart';
 export './shared/button.dart';
+export './shared/confirmation_sheet.dart';
 
 // First Screen
 export './first_screen/info_card.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum ButtonColor {
   red,
   green,
-  gray,
+  grey,
   orange,
   violet,
   blue,
@@ -44,53 +44,65 @@ class ButtonExtended extends StatelessWidget {
   });
 
   Text getText(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 16,
+        color: getTextColor(context),
+      ),
+    );
+  }
+
+  Color getTextColor(BuildContext context) {
+    Color color = Colors.white;
+
     if (variant == ButtonVariant.text || variant == ButtonVariant.outlined) {
-      return Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          color: disabled == true
-              ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
-              : Theme.of(context).colorScheme.primary,
-        ),
-      );
-    } else {
-      return Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          color:
-              disabled == true ? Colors.white.withOpacity(0.5) : Colors.white,
-        ),
-      );
+      color = getColor(context);
     }
+
+    if (disabled == true) {
+      color = color.withOpacity(0.5);
+    }
+
+    return color;
   }
 
   Color getColor(BuildContext context) {
-    if (disabled == true) {
-      return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-    }
+    Color colorBtn = Theme.of(context).colorScheme.primary;
 
     switch (color) {
       case ButtonColor.red:
-        return Theme.of(context).colorScheme.error;
+        colorBtn = Colors.red;
+        break;
       case ButtonColor.green:
-        return Colors.green;
-      case ButtonColor.gray:
-        return Theme.of(context).colorScheme.secondary;
+        colorBtn = Colors.green;
+        break;
+      case ButtonColor.grey:
+        colorBtn = Colors.grey;
+        break;
       case ButtonColor.orange:
-        return Colors.orange;
+        colorBtn = Colors.orange;
+        break;
       case ButtonColor.violet:
-        return Theme.of(context).colorScheme.tertiary;
+        colorBtn = Colors.purple;
+        break;
       case ButtonColor.blue:
-        return Theme.of(context).colorScheme.primary;
+        colorBtn = Colors.blue;
+        break;
       case ButtonColor.yellow:
-        return Colors.yellow;
+        colorBtn = Colors.yellow;
+        break;
       case ButtonColor.primary:
-        return Theme.of(context).colorScheme.primary;
       default:
-        return Theme.of(context).colorScheme.primary;
+        colorBtn = Theme.of(context).colorScheme.primary;
+        break;
     }
+
+    if (disabled == true) {
+      colorBtn = colorBtn.withOpacity(0.5);
+    }
+
+    return colorBtn;
   }
 
   @override
@@ -112,13 +124,19 @@ class ButtonExtended extends StatelessWidget {
 
     if (variant == ButtonVariant.text) {
       return TextButton(
-        onPressed: disabled == true ? null : onPressed,
+        onPressed: () {
+          if (disabled == true) return;
+          onPressed!();
+        },
         onLongPress: onLongPress,
         child: child,
       );
     } else if (variant == ButtonVariant.outlined) {
       return OutlinedButton(
-        onPressed: disabled == true ? null : onPressed,
+        onPressed: () {
+          if (disabled == true) return;
+          onPressed!();
+        },
         onLongPress: onLongPress,
         style: OutlinedButton.styleFrom(
           shape: borderShape,
@@ -131,7 +149,10 @@ class ButtonExtended extends StatelessWidget {
     } else {
       //apply border radios 8, to all corners
       return ElevatedButton(
-        onPressed: disabled == true ? null : onPressed,
+        onPressed: () {
+          if (disabled == true) return;
+          onPressed!();
+        },
         onLongPress: onLongPress,
         style: ElevatedButton.styleFrom(
           shape: borderShape,

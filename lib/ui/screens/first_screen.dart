@@ -137,6 +137,29 @@ class FirstScreen extends ConsumerWidget {
 
           Separator(horizontal: 24, vertical: 8),
 
+          ButtonExtended(
+            text: 'Open Confirmation Sheet',
+            onPressed: () {
+              ConfirmationSheet.show(
+                context: context,
+                title: 'Confirmation Sheet',
+                confirmText: 'Yes, confirm',
+                cancelText: 'Cancel',
+                onConfirm: () {
+                  print('Confirmed');
+                },
+                onCancel: () {
+                  print('Canceled');
+                },
+                child: const Text('Are you sure you want to confirm?',
+                    style: TextStyle(fontSize: 16)),
+              );
+            },
+            variant: ButtonVariant.contained,
+          ),
+
+          Separator(horizontal: 24, vertical: 8),
+
           InputText(
             label: 'Label',
             helperText: 'Helper Text',
@@ -157,15 +180,15 @@ class FirstScreen extends ConsumerWidget {
           ),
 
           ButtonExtended(
-            text: 'Button Outlined',
-            onPressed: () {},
-            variant: ButtonVariant.outlined,
-          ),
-
-          ButtonExtended(
             text: 'Button Text',
             onPressed: () {},
             variant: ButtonVariant.text,
+          ),
+
+          ButtonExtended(
+            text: 'Button Outlined',
+            onPressed: () {},
+            variant: ButtonVariant.outlined,
           ),
 
           Separator(horizontal: 24, vertical: 8),

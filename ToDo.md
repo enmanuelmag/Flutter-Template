@@ -1,6 +1,6 @@
 Shared Components:
 - [ ] Action Icon (Wrapped of button)
-- [ ] Button
+- [x] Button
 - [ ] Chip
 - [ ] Confirmation Modal
 - [ ] Number/Currency Input
