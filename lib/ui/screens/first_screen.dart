@@ -183,7 +183,7 @@ class FirstScreen extends ConsumerWidget {
           ButtonExtended(
             text: 'Button Text',
             onPressed: () {},
-            variant: ButtonVariant.text,
+            variant: ButtonVariant.transparent,
           ),
 
           ButtonExtended(
@@ -200,6 +200,12 @@ class FirstScreen extends ConsumerWidget {
           IconButtonExtended(
             onPressed: () {},
             variant: ButtonVariant.outlined,
+            icon: FluentIcons.share_ios_20_filled,
+          ),
+
+          IconButtonExtended(
+            onPressed: () {},
+            variant: ButtonVariant.transparent,
             icon: FluentIcons.share_ios_20_filled,
           ),
 

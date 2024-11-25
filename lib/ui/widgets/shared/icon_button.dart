@@ -32,13 +32,18 @@ class IconButtonExtended extends StatelessWidget {
     Color bgColor =
         getColor(context: context, color: color, disabled: disabled);
 
-    if (variant == ButtonVariant.text) {
-      return TextButton(
+    if (variant == ButtonVariant.transparent) {
+      return IconButton.outlined(
         onPressed: () {
           if (disabled == true) return;
           onPressed!();
         },
-        child: Icon(icon),
+        iconSize: (size ?? 24) + 4,
+        style: IconButton.styleFrom(
+          shape: borderShape,
+          side: BorderSide(color: Colors.transparent),
+        ),
+        icon: Icon(icon, color: bgColor),
       );
     } else if (variant == ButtonVariant.outlined) {
       return IconButton.outlined(

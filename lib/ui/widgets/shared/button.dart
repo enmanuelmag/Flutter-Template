@@ -16,7 +16,7 @@ enum ButtonColor {
 enum ButtonVariant {
   contained,
   outlined,
-  text,
+  transparent,
 }
 
 class ButtonExtended extends StatelessWidget {
@@ -58,7 +58,8 @@ class ButtonExtended extends StatelessWidget {
   Color getTextColor(BuildContext context) {
     Color colorText = Colors.white;
 
-    if (variant == ButtonVariant.text || variant == ButtonVariant.outlined) {
+    if (variant == ButtonVariant.transparent ||
+        variant == ButtonVariant.outlined) {
       colorText = getColor(context: context, color: color, disabled: disabled);
     }
 
@@ -89,7 +90,7 @@ class ButtonExtended extends StatelessWidget {
     Color bgColor =
         getColor(context: context, color: color, disabled: disabled);
 
-    if (variant == ButtonVariant.text) {
+    if (variant == ButtonVariant.transparent) {
       return TextButton(
         onPressed: () {
           if (disabled == true) return;
