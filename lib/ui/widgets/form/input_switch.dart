@@ -6,16 +6,14 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class SwitchCustom extends StatelessWidget {
-  final bool value;
   final String? name;
   final List<FormFieldValidator<String>>? validators;
   final String? label;
-  final void Function(bool)? onChanged;
+  final void Function(bool)? onChange;
 
   const SwitchCustom({
     super.key,
-    required this.value,
-    required this.onChanged,
+    required this.onChange,
     this.name,
     this.validators,
     this.label,
@@ -28,12 +26,12 @@ class SwitchCustom extends StatelessWidget {
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
-      builder: (FormFieldState<Object?> field) => getSwitch(field),
+      builder: (FormFieldState<bool?> field) => getSwitch(field),
     );
   }
 
   Widget getSwitch(
-    FormFieldState<Object?> field,
+    FormFieldState<bool?> field,
   ) {
     return Column(
       children: <Widget>[
@@ -47,9 +45,11 @@ class SwitchCustom extends StatelessWidget {
               ),
             const SizedBox(width: 4),
             Switch(
-              value: value,
+              value: field.value as bool? ?? false,
               onChanged: (v) {
-                onChanged!(!v);
+                if (onChange != null) {
+                  onChange!(v);
+                }
                 field.didChange(!v);
               },
             ),

@@ -94,7 +94,10 @@ class ButtonExtended extends StatelessWidget {
       return TextButton(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         onLongPress: onLongPress,
         child: child,
@@ -103,7 +106,10 @@ class ButtonExtended extends StatelessWidget {
       return OutlinedButton(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         onLongPress: onLongPress,
         style: OutlinedButton.styleFrom(
@@ -116,7 +122,10 @@ class ButtonExtended extends StatelessWidget {
       return ElevatedButton(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         onLongPress: onLongPress,
         style: ElevatedButton.styleFrom(

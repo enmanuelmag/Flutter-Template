@@ -34,8 +34,7 @@ class SecondScreen extends StatelessWidget {
             const TextDivider(text: 'Inputs'),
             SwitchCustom(
               label: 'Switch',
-              value: false,
-              onChanged: (bool b) {
+              onChange: (bool b) {
                 print('Switch value: $b');
               },
             ),

@@ -96,7 +96,9 @@ class InputDateRange extends StatelessWidget {
               );
 
               if (dateRangeTime != null) {
-                onChange!(dateRangeTime);
+                if (onChange != null) {
+                  onChange!(dateRangeTime);
+                }
                 field.didChange(dateRangeTime);
               }
             },

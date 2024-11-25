@@ -36,7 +36,10 @@ class IconButtonExtended extends StatelessWidget {
       return IconButton.outlined(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         iconSize: (size ?? 24) + 4,
         style: IconButton.styleFrom(
@@ -49,7 +52,10 @@ class IconButtonExtended extends StatelessWidget {
       return IconButton.outlined(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         iconSize: size ?? 24,
         style: IconButton.styleFrom(
@@ -62,7 +68,10 @@ class IconButtonExtended extends StatelessWidget {
       return IconButton.filled(
         onPressed: () {
           if (disabled == true) return;
-          onPressed!();
+
+          if (onPressed != null) {
+            onPressed!();
+          }
         },
         iconSize: size ?? 24,
         style: IconButton.styleFrom(
