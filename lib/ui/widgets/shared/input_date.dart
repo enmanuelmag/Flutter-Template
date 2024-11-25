@@ -1,9 +1,15 @@
+// ignore_for_file: always_specify_types
+
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
 class InputDate extends StatelessWidget {
   final String label;
+  final String? name;
+  final List<String? Function(dynamic)>? validators;
   final String? cancelText;
   final String? confirmText;
   final DateTime? minDate;
@@ -21,6 +27,8 @@ class InputDate extends StatelessWidget {
     super.key,
     required this.label,
     required this.onChange,
+    this.name,
+    this.validators,
     this.minDate,
     this.maxDate,
     this.cancelText,
@@ -36,8 +44,19 @@ class InputDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextInputType parsedKeyboardType = TextInputType.datetime;
+    return FormBuilderField(
+      name: name ?? '',
+      validator: FormBuilderValidators.compose(
+        validators ?? <String? Function(dynamic)>[],
+      ),
+      builder: (FormFieldState<Object?> field) => getInput(context, field),
+    );
+  }
 
+  Widget getInput(
+    BuildContext context,
+    FormFieldState<Object?> field,
+  ) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
@@ -69,7 +88,6 @@ class InputDate extends StatelessWidget {
             readOnly: true,
             autofocus: autoFocus ?? false,
             obscureText: obscureText ?? false,
-            keyboardType: parsedKeyboardType,
             decoration: InputDecoration(
               filled: true,
               isDense: true,

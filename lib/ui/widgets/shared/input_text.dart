@@ -1,11 +1,17 @@
+// ignore_for_file: always_specify_types, inference_failure_on_function_invocation
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class InputText extends StatelessWidget {
   final String label;
+  final String? name;
+  final List<String? Function(dynamic)>? validators;
   final bool? autoFocus;
   final bool? isCurrency;
   final String? placeholder;
@@ -21,6 +27,8 @@ class InputText extends StatelessWidget {
     super.key,
     required this.label,
     required this.onChange,
+    this.name,
+    this.validators,
     this.autoFocus,
     this.isCurrency,
     this.placeholder,
@@ -34,6 +42,18 @@ class InputText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return FormBuilderField(
+      name: name ?? '',
+      validator: FormBuilderValidators.compose(
+        validators ?? <String? Function(dynamic)>[],
+      ),
+      builder: (FormFieldState<Object?> field) => getInput(field),
+    );
+  }
+
+  Widget getInput(
+    FormFieldState<Object?> field,
+  ) {
     List<TextInputFormatter> inputFormatters = <TextInputFormatter>[];
 
     TextInputType parsedKeyboardType = keyboardType ?? TextInputType.text;
@@ -61,7 +81,9 @@ class InputText extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
-            onChanged: onChange,
+            onChanged: (value) {
+              field.didChange(value);
+            },
             inputFormatters: inputFormatters,
             enabled: disabled != true,
             readOnly: readOnly ?? false,
