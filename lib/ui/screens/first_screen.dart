@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/icon_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -169,7 +170,7 @@ class FirstScreen extends ConsumerWidget {
           Separator(horizontal: 24, vertical: 8),
 
           SelectInput(
-              label: 'Label', items: items, onChange: (String value) {}),
+              label: 'Select', items: items, onChange: (String value) {}),
 
           Separator(horizontal: 24, vertical: 8),
 
@@ -189,6 +190,17 @@ class FirstScreen extends ConsumerWidget {
             text: 'Button Outlined',
             onPressed: () {},
             variant: ButtonVariant.outlined,
+          ),
+
+          IconButtonExtended(
+            onPressed: () {},
+            icon: FluentIcons.add_24_regular,
+          ),
+
+          IconButtonExtended(
+            onPressed: () {},
+            variant: ButtonVariant.outlined,
+            icon: FluentIcons.share_ios_20_filled,
           ),
 
           Separator(horizontal: 24, vertical: 8),

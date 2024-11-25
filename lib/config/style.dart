@@ -5,6 +5,14 @@ import 'package:flutter/material.dart';
 class Style {
   const Style();
 
+  //static final Color seedLight = Color(0xFF7c3aed); // violet-600 // original (0xFF7c3aed light)
+
+  //static final Color seedDark = Color(0xFFc4b5fd); // violet-600 // original (0xFFc4b5fd light)
+
+  static final Color seedLight = Color(0xFF845ef7); // violet-500
+
+  static final Color seedDark = Color(0xFF9775fa); // violet-400
+
   // =================
   // | Border radius |
   // =================
@@ -32,11 +40,11 @@ class Style {
     // Basic color definitions
     colorScheme: ColorScheme.fromSeed(
       // The seed sets the primary colors automatically
-      seedColor: const Color(0xFF7c3aed), // violet-600
+      seedColor: seedLight,
       // How the colors are calculated from the seed
       dynamicSchemeVariant: DynamicSchemeVariant.rainbow,
       onPrimary: Colors.white,
-      secondary: const Color(0xFF7c3aed), // violet-600
+      secondary: seedLight,
       onSecondary: Colors.white,
       tertiary: const Color(0xFFdb2777), // pink-600
       onTertiary: Colors.white,
@@ -85,10 +93,10 @@ class Style {
     // Basic color definitions
     colorScheme: ColorScheme.fromSeed(
       // Example: Overwrite the primary color
-      seedColor: const Color(0xFFc4b5fd), // violet-400
-      primary: const Color(0xFFc4b5fd), // violet-400
+      seedColor: seedDark,
+      primary: seedDark,
       onPrimary: Colors.black,
-      secondary: const Color(0xFFa78bfa), // violet-400
+      secondary: seedDark,
       onSecondary: Colors.white,
       tertiary: const Color(0xFFf472b6), // pink-400
       onTertiary: Colors.white,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_production_boilerplate_riverpod/utils/button.dart';
+
 enum ButtonColor {
   red,
   green,
@@ -54,55 +56,17 @@ class ButtonExtended extends StatelessWidget {
   }
 
   Color getTextColor(BuildContext context) {
-    Color color = Colors.white;
+    Color colorText = Colors.white;
 
     if (variant == ButtonVariant.text || variant == ButtonVariant.outlined) {
-      color = getColor(context);
+      colorText = getColor(context: context, color: color, disabled: disabled);
     }
 
     if (disabled == true) {
-      color = color.withOpacity(0.5);
+      colorText = colorText.withOpacity(0.5);
     }
 
-    return color;
-  }
-
-  Color getColor(BuildContext context) {
-    Color colorBtn = Theme.of(context).colorScheme.primary;
-
-    switch (color) {
-      case ButtonColor.red:
-        colorBtn = Colors.red;
-        break;
-      case ButtonColor.green:
-        colorBtn = Colors.green;
-        break;
-      case ButtonColor.grey:
-        colorBtn = Colors.grey;
-        break;
-      case ButtonColor.orange:
-        colorBtn = Colors.orange;
-        break;
-      case ButtonColor.violet:
-        colorBtn = Colors.purple;
-        break;
-      case ButtonColor.blue:
-        colorBtn = Colors.blue;
-        break;
-      case ButtonColor.yellow:
-        colorBtn = Colors.yellow;
-        break;
-      case ButtonColor.primary:
-      default:
-        colorBtn = Theme.of(context).colorScheme.primary;
-        break;
-    }
-
-    if (disabled == true) {
-      colorBtn = colorBtn.withOpacity(0.5);
-    }
-
-    return colorBtn;
+    return colorText;
   }
 
   @override
@@ -122,6 +86,9 @@ class ButtonExtended extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
     );
 
+    Color bgColor =
+        getColor(context: context, color: color, disabled: disabled);
+
     if (variant == ButtonVariant.text) {
       return TextButton(
         onPressed: () {
@@ -140,14 +107,11 @@ class ButtonExtended extends StatelessWidget {
         onLongPress: onLongPress,
         style: OutlinedButton.styleFrom(
           shape: borderShape,
-          side: BorderSide(
-            color: getColor(context),
-          ),
+          side: BorderSide(color: bgColor),
         ),
         child: child,
       );
     } else {
-      //apply border radios 8, to all corners
       return ElevatedButton(
         onPressed: () {
           if (disabled == true) return;
@@ -156,7 +120,7 @@ class ButtonExtended extends StatelessWidget {
         onLongPress: onLongPress,
         style: ElevatedButton.styleFrom(
           shape: borderShape,
-          backgroundColor: getColor(context),
+          backgroundColor: bgColor,
         ),
         child: child,
       );
