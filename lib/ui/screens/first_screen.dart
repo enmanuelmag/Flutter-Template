@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/icon_button.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/button_icon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -167,6 +167,13 @@ class FirstScreen extends ConsumerWidget {
             onChange: (String value) {},
           ),
 
+          SelectInput(
+            label: 'Select',
+            items: items,
+            helperText: 'Select an item',
+            onChange: (String value) {},
+          ),
+
           InputText(
             label: 'Number',
             helperText: 'Only numbers',
@@ -212,11 +219,6 @@ class FirstScreen extends ConsumerWidget {
             text: 'Loading example',
             size: 42,
           ),
-
-          Separator(horizontal: 24, vertical: 8),
-
-          SelectInput(
-              label: 'Select', items: items, onChange: (String value) {}),
 
           Separator(horizontal: 24, vertical: 8),
 

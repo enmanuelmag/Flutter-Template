@@ -1,43 +1,54 @@
-// ignore_for_file: always_specify_types, inference_failure_on_function_invocation
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-class InputText extends StatelessWidget {
+import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/sheets/bottom_sheet_container.dart';
+
+//define items type for SelectInput, this is a list of items, each item has a label and value property
+class SelectItem {
+  final Widget label;
+  final String value;
+  final bool? disabled;
+  final Widget? leading;
+  final Widget? trailing;
+
+  const SelectItem({
+    required this.label,
+    required this.value,
+    this.disabled,
+    this.leading,
+    this.trailing,
+  });
+}
+
+class SelectInput extends StatelessWidget {
   final String label;
   final String? name;
   final List<String? Function(dynamic)>? validators;
+  final List<SelectItem> items;
   final bool? autoFocus;
-  final bool? isCurrency;
   final String? placeholder;
   final String? helperText;
   final bool? disabled;
   final String? error;
-  final bool? obscureText;
   final bool? readOnly;
-  final TextInputType? keyboardType;
   final void Function(String) onChange;
 
-  const InputText({
+  const SelectInput({
     super.key,
     required this.label,
+    required this.items,
     required this.onChange,
     this.name,
     this.validators,
     this.autoFocus,
-    this.isCurrency,
     this.placeholder,
     this.helperText,
     this.disabled,
     this.error,
-    this.obscureText,
     this.readOnly,
-    this.keyboardType,
   });
 
   @override
@@ -47,27 +58,30 @@ class InputText extends StatelessWidget {
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
-      builder: (FormFieldState<Object?> field) => getInput(field),
+      builder: (FormFieldState<Object?> field) => getInput(context, field),
     );
   }
 
   Widget getInput(
+    BuildContext context,
     FormFieldState<Object?> field,
   ) {
-    List<TextInputFormatter> inputFormatters = <TextInputFormatter>[];
+    final List<ListTile> itemsWidget = items
+        .map(
+          (SelectItem item) => ListTile(
+            title: item.label,
+            leading: item.leading,
+            trailing: item.trailing,
+            visualDensity: VisualDensity.compact,
+            enabled: item.disabled != true,
+            onTap: () {
+              if (item.disabled == true) return;
 
-    TextInputType parsedKeyboardType = keyboardType ?? TextInputType.text;
-
-    if (isCurrency == true) {
-      parsedKeyboardType = TextInputType.number;
-      inputFormatters.add(CurrencyTextInputFormatter.currency(
-        decimalDigits: 2,
-        locale: 'en_US',
-        symbol: '\$',
-      ));
-    } else if (parsedKeyboardType == TextInputType.number) {
-      inputFormatters.add(FilteringTextInputFormatter.digitsOnly);
-    }
+              onChange(item.value);
+            },
+          ),
+        )
+        .toList();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
@@ -81,15 +95,18 @@ class InputText extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
-            onChanged: (value) {
-              field.didChange(value);
+            onTap: () {
+              BasicSheet.show(
+                context: context,
+                title: label,
+                child: Column(
+                  children: itemsWidget,
+                ),
+              );
             },
-            inputFormatters: inputFormatters,
             enabled: disabled != true,
             readOnly: readOnly ?? false,
             autofocus: autoFocus ?? false,
-            obscureText: obscureText ?? false,
-            keyboardType: parsedKeyboardType,
             decoration: InputDecoration(
               filled: true,
               isDense: true,
