@@ -29,7 +29,7 @@ class ConfirmationSheet extends StatelessWidget {
         padding: EdgeInsets.only(
           left: 12,
           right: 12,
-          bottom: 0,
+          bottom: 12,
           top: 16,
         ),
         child: Column(
@@ -94,7 +94,6 @@ class ConfirmationSheet extends StatelessWidget {
       isDismissible: true,
       animationCurve: Curves.easeInOut,
       context: context,
-      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(8),
