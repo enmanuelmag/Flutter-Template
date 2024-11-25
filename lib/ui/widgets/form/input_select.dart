@@ -26,7 +26,7 @@ class SelectItem {
 class SelectInput extends StatelessWidget {
   final String label;
   final String? name;
-  final List<String? Function(dynamic)>? validators;
+  final List<FormFieldValidator<String>>? validators;
   final List<SelectItem> items;
   final bool? autoFocus;
   final String? placeholder;
@@ -34,7 +34,7 @@ class SelectInput extends StatelessWidget {
   final bool? disabled;
   final String? error;
   final bool? readOnly;
-  final void Function(String) onChange;
+  final void Function(String)? onChange;
 
   const SelectInput({
     super.key,
@@ -77,7 +77,9 @@ class SelectInput extends StatelessWidget {
             onTap: () {
               if (item.disabled == true) return;
 
-              onChange(item.value);
+              if (onChange != null) {
+                onChange!(item.value);
+              }
               field.didChange(item.value);
             },
           ),
@@ -111,7 +113,7 @@ class SelectInput extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: error,
+              errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white30,

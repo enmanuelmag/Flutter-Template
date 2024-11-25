@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/form/input_switch.dart';
 import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/button_icon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -50,13 +49,6 @@ class FirstScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const List<SelectItem> items = <SelectItem>[
-      SelectItem(value: '1', label: Text('One')),
-      SelectItem(value: '2', label: Text('Two')),
-      SelectItem(value: '3', label: Text('Three'), disabled: true),
-      SelectItem(value: '4', label: Text('Four')),
-    ];
-
     return Material(
       color: Theme.of(context).colorScheme.surface,
       child: ListView(
@@ -137,7 +129,7 @@ class FirstScreen extends ConsumerWidget {
             ],
           ),
 
-          Separator(horizontal: 24, vertical: 8),
+          Separator(horizontal: 12, vertical: 8),
 
           ButtonExtended(
             text: 'Open Confirmation Sheet',
@@ -160,76 +152,14 @@ class FirstScreen extends ConsumerWidget {
             variant: ButtonVariant.contained,
           ),
 
-          Separator(horizontal: 24, vertical: 8),
-
-          SwitchCustom(
-            label: 'Switch',
-            value: false,
-            onChanged: (bool b) {
-              print('Switch value: $b');
-            },
-          ),
-
-          InputText(
-            label: 'Label',
-            helperText: 'Helper Text',
-            onChange: (String value) {},
-          ),
-
-          SelectInput(
-            label: 'Select',
-            items: items,
-            helperText: 'Select an item',
-            onChange: (String value) {},
-          ),
-
-          InputText(
-            label: 'Number',
-            helperText: 'Only numbers',
-            onChange: (String value) {},
-            keyboardType: TextInputType.number,
-          ),
-
-          InputText(
-            isCurrency: true,
-            label: 'Currency',
-            helperText: 'Only currency',
-            onChange: (String value) {},
-            keyboardType: TextInputType.number,
-          ),
-
-          InputDate(
-            label: 'Date',
-            helperText: 'Select a date',
-            onChange: (DateTime value) {
-              print('Selected date: $value');
-            },
-          ),
-
-          InputDateRange(
-            label: 'Date range',
-            helperText: 'Select a date range',
-            onChange: (DateTimeRange value) {
-              print('Selected range date: $value');
-            },
-          ),
-
-          InputTime(
-            label: 'Time',
-            helperText: 'Select a time',
-            onChange: (TimeOfDay value) {
-              print('Selected range date: $value');
-            },
-          ),
-
-          Separator(horizontal: 24, vertical: 8),
+          Separator(horizontal: 12, vertical: 8),
 
           Loader(
             text: 'Loading example',
             size: 42,
           ),
 
-          Separator(horizontal: 24, vertical: 8),
+          Separator(horizontal: 12, vertical: 8),
 
           ButtonExtended(
             text: 'Button Contained',
@@ -269,7 +199,7 @@ class FirstScreen extends ConsumerWidget {
             ],
           ),
 
-          Separator(horizontal: 24, vertical: 8),
+          Separator(horizontal: 12, vertical: 8),
 
           /// If no complex grids are required remove the flutter_staggered_grid_view package
           MasonryGridView.builder(

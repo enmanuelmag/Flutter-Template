@@ -11,7 +11,7 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 class InputText extends StatelessWidget {
   final String label;
   final String? name;
-  final List<String? Function(dynamic)>? validators;
+  final List<FormFieldValidator<String>>? validators;
   final bool? autoFocus;
   final bool? isCurrency;
   final String? placeholder;
@@ -21,12 +21,12 @@ class InputText extends StatelessWidget {
   final bool? obscureText;
   final bool? readOnly;
   final TextInputType? keyboardType;
-  final void Function(String) onChange;
+  final void Function(String)? onChange;
 
   const InputText({
     super.key,
     required this.label,
-    required this.onChange,
+    this.onChange,
     this.name,
     this.validators,
     this.autoFocus,
@@ -82,7 +82,9 @@ class InputText extends StatelessWidget {
           const SizedBox(height: 4),
           TextField(
             onChanged: (value) {
-              onChange(value);
+              if (onChange != null) {
+                onChange!(value);
+              }
               field.didChange(value);
             },
             inputFormatters: inputFormatters,
@@ -94,7 +96,7 @@ class InputText extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: error,
+              errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white30,

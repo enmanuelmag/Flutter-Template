@@ -8,9 +8,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class SwitchCustom extends StatelessWidget {
   final bool value;
   final String? name;
-  final List<String? Function(dynamic)>? validators;
+  final List<FormFieldValidator<String>>? validators;
   final String? label;
-  final void Function(bool) onChanged;
+  final void Function(bool)? onChanged;
 
   const SwitchCustom({
     super.key,
@@ -49,13 +49,12 @@ class SwitchCustom extends StatelessWidget {
             Switch(
               value: value,
               onChanged: (v) {
-                onChanged(!v);
+                onChanged!(!v);
                 field.didChange(!v);
               },
             ),
           ],
         ),
-        const Divider(),
       ],
     );
   }

@@ -9,7 +9,7 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 class InputDate extends StatelessWidget {
   final String label;
   final String? name;
-  final List<String? Function(dynamic)>? validators;
+  final List<FormFieldValidator<String>>? validators;
   final String? cancelText;
   final String? confirmText;
   final DateTime? minDate;
@@ -21,12 +21,12 @@ class InputDate extends StatelessWidget {
   final String? error;
   final bool? obscureText;
   final bool? readOnly;
-  final void Function(DateTime) onChange;
+  final void Function(DateTime)? onChange;
 
   const InputDate({
     super.key,
     required this.label,
-    required this.onChange,
+    this.onChange,
     this.name,
     this.validators,
     this.minDate,
@@ -81,7 +81,9 @@ class InputDate extends StatelessWidget {
               );
 
               if (datetime != null) {
-                onChange(datetime);
+                if (onChange != null) {
+                  onChange!(datetime);
+                }
                 field.didChange(datetime);
               }
             },
@@ -92,7 +94,7 @@ class InputDate extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: error,
+              errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white30,
