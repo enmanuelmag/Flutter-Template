@@ -1,53 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
-class InputText extends StatelessWidget {
+class InputDateRange extends StatelessWidget {
   final String label;
+  final String? cancelText;
+  final String? confirmText;
+  final DateTime? minDate;
+  final DateTime? maxDate;
   final bool? autoFocus;
-  final bool? isCurrency;
   final String? placeholder;
   final String? helperText;
   final bool? disabled;
   final String? error;
   final bool? obscureText;
   final bool? readOnly;
-  final TextInputType? keyboardType;
-  final void Function(String) onChange;
+  final void Function(DateTimeRange) onChange;
 
-  const InputText({
+  const InputDateRange({
     super.key,
     required this.label,
     required this.onChange,
+    this.minDate,
+    this.maxDate,
+    this.cancelText,
+    this.confirmText,
     this.autoFocus,
-    this.isCurrency,
     this.placeholder,
     this.helperText,
     this.disabled,
     this.error,
     this.obscureText,
     this.readOnly,
-    this.keyboardType,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<TextInputFormatter> inputFormatters = <TextInputFormatter>[];
-
-    TextInputType parsedKeyboardType = keyboardType ?? TextInputType.text;
-
-    if (isCurrency == true) {
-      parsedKeyboardType = TextInputType.number;
-      inputFormatters.add(CurrencyTextInputFormatter.currency(
-        decimalDigits: 2,
-        locale: 'en_US',
-        symbol: '\$',
-      ));
-    } else if (parsedKeyboardType == TextInputType.number) {
-      inputFormatters.add(FilteringTextInputFormatter.digitsOnly);
-    }
+    TextInputType parsedKeyboardType = TextInputType.datetime;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
@@ -61,10 +50,38 @@ class InputText extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
-            onChanged: onChange,
-            inputFormatters: inputFormatters,
+            onTap: () async {
+              DateTimeRange? dateRangeTime = await showDateRangePicker(
+                context: context,
+                initialDateRange: DateTimeRange(
+                  start: DateTime.now(),
+                  end: DateTime.now().add(const Duration(days: 7)),
+                ),
+                firstDate: minDate ?? DateTime(2000),
+                lastDate: maxDate ?? DateTime(2100),
+                cancelText: cancelText ?? 'Cancel',
+                confirmText: confirmText ?? 'Confirm',
+                helpText: helperText,
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      dialogTheme: DialogTheme(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
+              );
+
+              if (dateRangeTime != null) {
+                onChange(dateRangeTime);
+              }
+            },
             enabled: disabled != true,
-            readOnly: readOnly ?? false,
+            readOnly: true,
             autofocus: autoFocus ?? false,
             obscureText: obscureText ?? false,
             keyboardType: parsedKeyboardType,

@@ -167,6 +167,52 @@ class FirstScreen extends ConsumerWidget {
             onChange: (String value) {},
           ),
 
+          InputText(
+            label: 'Number',
+            helperText: 'Only numbers',
+            onChange: (String value) {},
+            keyboardType: TextInputType.number,
+          ),
+
+          InputText(
+            isCurrency: true,
+            label: 'Currency',
+            helperText: 'Only currency',
+            onChange: (String value) {},
+            keyboardType: TextInputType.number,
+          ),
+
+          InputDate(
+            label: 'Date',
+            helperText: 'Select a date',
+            onChange: (DateTime value) {
+              print('Selected date: $value');
+            },
+          ),
+
+          InputDateRange(
+            label: 'Date range',
+            helperText: 'Select a date range',
+            onChange: (DateTimeRange value) {
+              print('Selected range date: $value');
+            },
+          ),
+
+          InputTime(
+            label: 'Time',
+            helperText: 'Select a time',
+            onChange: (TimeOfDay value) {
+              print('Selected range date: $value');
+            },
+          ),
+
+          Separator(horizontal: 24, vertical: 8),
+
+          Loader(
+            text: 'Loading example',
+            size: 42,
+          ),
+
           Separator(horizontal: 24, vertical: 8),
 
           SelectInput(
@@ -192,21 +238,24 @@ class FirstScreen extends ConsumerWidget {
             variant: ButtonVariant.outlined,
           ),
 
-          IconButtonExtended(
-            onPressed: () {},
-            icon: FluentIcons.add_24_regular,
-          ),
-
-          IconButtonExtended(
-            onPressed: () {},
-            variant: ButtonVariant.outlined,
-            icon: FluentIcons.share_ios_20_filled,
-          ),
-
-          IconButtonExtended(
-            onPressed: () {},
-            variant: ButtonVariant.transparent,
-            icon: FluentIcons.share_ios_20_filled,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <IconButtonExtended>[
+              IconButtonExtended(
+                onPressed: () {},
+                icon: FluentIcons.add_24_regular,
+              ),
+              IconButtonExtended(
+                onPressed: () {},
+                variant: ButtonVariant.outlined,
+                icon: FluentIcons.share_ios_20_filled,
+              ),
+              IconButtonExtended(
+                onPressed: () {},
+                variant: ButtonVariant.transparent,
+                icon: FluentIcons.share_ios_20_filled,
+              ),
+            ],
           ),
 
           Separator(horizontal: 24, vertical: 8),

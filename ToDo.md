@@ -1,11 +1,9 @@
 Shared Components:
-- [ ] Action Icon (Wrapped of button)
+- [x] Action Icon (Wrapped of button)
 - [x] Button
-- [ ] Chip
-- [ ] Confirmation Modal
-- [ ] Number/Currency Input
-- [ ] Date Picker
-- [ ] Gradient List (take virtualized list)
+- [x] Confirmation Modal
+- [x] Number/Currency Input
+- [x] Date Picker / Date Range Picker
 - [ ] Loader (with text)
 - [x] Bottom Sheet (Popover)
 - [x] Select, value, defaultValue, label, name, error, placeholder, items, onChange
