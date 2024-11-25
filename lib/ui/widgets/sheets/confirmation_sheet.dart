@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/divider.dart';
-import 'package:flutter_production_boilerplate_riverpod/ui/widgets/widget.barrel.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/widget.barrel.dart';
 
 class ConfirmationSheet extends StatelessWidget {
   final Widget child;
@@ -58,14 +58,20 @@ class ConfirmationSheet extends StatelessWidget {
               children: <Widget>[
                 ButtonExtended(
                   text: confirmText ?? 'Confirm',
-                  onPressed: onConfirm,
+                  onPressed: () {
+                    onConfirm();
+                    Navigator.pop(context);
+                  },
                   variant: ButtonVariant.contained,
                   color: ButtonColor.primary,
                 ),
                 const SizedBox(width: 8),
                 ButtonExtended(
                   text: cancelText ?? 'Cancel',
-                  onPressed: onCancel,
+                  onPressed: () {
+                    onCancel?.call();
+                    Navigator.pop(context);
+                  },
                   variant: ButtonVariant.contained,
                   color: ButtonColor.grey,
                 ),

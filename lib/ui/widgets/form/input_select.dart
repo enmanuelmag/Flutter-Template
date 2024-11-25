@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -81,6 +83,8 @@ class SelectInput extends StatelessWidget {
                 onChange!(item.value);
               }
               field.didChange(item.value);
+
+              Navigator.pop(context);
             },
           ),
         )
