@@ -64,7 +64,7 @@ class InputDate extends StatelessWidget {
         children: <Widget>[
           Text(
             label,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: Style.labelInputSize),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
@@ -82,6 +82,7 @@ class InputDate extends StatelessWidget {
 
               if (datetime != null) {
                 onChange(datetime);
+                field.didChange(datetime);
               }
             },
             enabled: disabled != true,

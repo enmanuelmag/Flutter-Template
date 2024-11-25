@@ -64,7 +64,7 @@ class InputDateRange extends StatelessWidget {
         children: <Widget>[
           Text(
             label,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: Style.labelInputSize),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
@@ -97,6 +97,7 @@ class InputDateRange extends StatelessWidget {
 
               if (dateRangeTime != null) {
                 onChange(dateRangeTime);
+                field.didChange(dateRangeTime);
               }
             },
             enabled: disabled != true,

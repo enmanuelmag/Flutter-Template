@@ -76,12 +76,13 @@ class InputText extends StatelessWidget {
         children: <Widget>[
           Text(
             label,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: Style.labelInputSize),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
           TextField(
             onChanged: (value) {
+              onChange(value);
               field.didChange(value);
             },
             inputFormatters: inputFormatters,

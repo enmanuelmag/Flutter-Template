@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_production_boilerplate_riverpod/ui/widgets/form/input_switch.dart';
 import 'package:flutter_production_boilerplate_riverpod/ui/widgets/shared/button_icon.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -160,6 +161,14 @@ class FirstScreen extends ConsumerWidget {
           ),
 
           Separator(horizontal: 24, vertical: 8),
+
+          SwitchCustom(
+            label: 'Switch',
+            value: false,
+            onChanged: (bool b) {
+              print('Switch value: $b');
+            },
+          ),
 
           InputText(
             label: 'Label',

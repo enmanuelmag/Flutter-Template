@@ -28,6 +28,8 @@ class Style {
 
   static const double inputHeight = 1.25;
 
+  static const double labelInputSize = 14;
+
   // ===============
   // | Light Theme |
   // ===============

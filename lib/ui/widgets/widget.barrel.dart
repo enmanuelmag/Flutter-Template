@@ -18,6 +18,7 @@ export './form/input_text.dart';
 export './form/input_date.dart';
 export './form/input_select.dart';
 export './form/input_daterange.dart';
+export 'form/input_switch.dart';
 
 // First Screen
 export './first_screen/info_card.dart';

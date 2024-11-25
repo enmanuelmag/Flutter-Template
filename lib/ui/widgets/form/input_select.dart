@@ -78,6 +78,7 @@ class SelectInput extends StatelessWidget {
               if (item.disabled == true) return;
 
               onChange(item.value);
+              field.didChange(item.value);
             },
           ),
         )
@@ -90,7 +91,7 @@ class SelectInput extends StatelessWidget {
         children: <Widget>[
           Text(
             label,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: Style.labelInputSize),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
