@@ -99,7 +99,7 @@ class InputText extends StatelessWidget {
               errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
-              fillColor: Colors.white30,
+              fillColor: Colors.white.withOpacity(0.1),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),

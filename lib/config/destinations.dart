@@ -12,5 +12,5 @@ class Destination {
 
 List<Destination> navbarDestinations = <Destination>[
   Destination(name: 'Home', icon: Icons.home),
-  Destination(name: 'Settings', icon: Icons.settings),
+  Destination(name: 'Form', icon: Icons.account_circle),
 ];

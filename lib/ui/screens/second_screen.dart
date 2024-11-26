@@ -29,9 +29,15 @@ class SecondScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           children: <Widget>[
             const Header(text: 'bottom_nav_second'),
-            const TextDivider(text: 'Form Validation'),
+            const TextDivider(
+              text: 'Form Validation',
+              horizontal: 8,
+            ),
             getForm(),
-            const TextDivider(text: 'Inputs'),
+            const TextDivider(
+              text: 'Inputs',
+              horizontal: 8,
+            ),
             SwitchCustom(
               label: 'Switch',
               onChange: (bool b) {
@@ -105,6 +111,7 @@ class SecondScreen extends StatelessWidget {
               FormBuilderValidators.required(),
             ],
           ),
+          const SizedBox(height: 8),
           InputText(
             name: 'email',
             label: 'Email',

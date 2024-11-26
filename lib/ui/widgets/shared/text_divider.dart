@@ -2,14 +2,25 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class TextDivider extends StatelessWidget {
-  const TextDivider({super.key, required this.text});
+  final double? horizontal;
+  final double? vertical;
+
+  const TextDivider({
+    super.key,
+    required this.text,
+    this.horizontal,
+    this.vertical,
+  });
 
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, top: 16, right: 24, bottom: 16),
+      padding: EdgeInsets.symmetric(
+        vertical: vertical ?? 16,
+        horizontal: horizontal ?? 24,
+      ),
       child: Row(
         children: <Widget>[
           Expanded(

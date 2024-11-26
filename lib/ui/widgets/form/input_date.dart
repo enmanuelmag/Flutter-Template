@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_production_boilerplate_riverpod/utils/date.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 class InputDate extends StatelessWidget {
   final String label;
   final String? name;
-  final List<FormFieldValidator<String>>? validators;
+  final List<FormFieldValidator<DateTime>>? validators;
   final String? cancelText;
   final String? confirmText;
   final DateTime? minDate;
@@ -44,19 +45,27 @@ class InputDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField(
+    return FormBuilderField<DateTime>(
       name: name ?? '',
+      initialValue: DateTime.now(),
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
-      builder: (FormFieldState<Object?> field) => getInput(context, field),
+      builder: (FormFieldState<DateTime> field) => getInput(context, field),
     );
   }
 
   Widget getInput(
     BuildContext context,
-    FormFieldState<Object?> field,
+    FormFieldState<DateTime> field,
   ) {
+    TextEditingController textController = TextEditingController(
+      text: formatDateTime(
+        dateTime: field.value,
+        formatType: DateFormatType.ddMMyyyy,
+      ),
+    );
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
@@ -69,6 +78,7 @@ class InputDate extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
+            controller: textController,
             onTap: () async {
               DateTime? datetime = await showDatePicker(
                 context: context,
@@ -97,7 +107,7 @@ class InputDate extends StatelessWidget {
               errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
-              fillColor: Colors.white30,
+              fillColor: Colors.white.withOpacity(0.1),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
