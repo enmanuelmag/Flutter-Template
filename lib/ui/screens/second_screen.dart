@@ -41,10 +41,10 @@ class SecondScreen extends StatelessWidget {
 
   Widget getInputs() {
     const List<SelectItem> items = <SelectItem>[
-      SelectItem(value: '1', label: Text('One')),
-      SelectItem(value: '2', label: Text('Two')),
-      SelectItem(value: '3', label: Text('Three'), disabled: true),
-      SelectItem(value: '4', label: Text('Four')),
+      SelectItem(value: '1', label: 'One'),
+      SelectItem(value: '2', label: 'Two'),
+      SelectItem(value: '3', label: 'Three', disabled: true),
+      SelectItem(value: '4', label: 'Four'),
     ];
 
     return Column(
@@ -107,6 +107,13 @@ class SecondScreen extends StatelessWidget {
   Widget getForm() {
     final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
 
+    const List<SelectItem> items = <SelectItem>[
+      SelectItem(value: '1', label: 'One'),
+      SelectItem(value: '2', label: 'Two'),
+      SelectItem(value: '3', label: 'Three', disabled: true),
+      SelectItem(value: '4', label: 'Four'),
+    ];
+
     return FormBuilder(
       key: formKey,
       initialValue: <String, dynamic>{
@@ -126,6 +133,14 @@ class SecondScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
+          SelectInput(
+            name: 'select',
+            label: 'Select',
+            items: items,
+            initialValue: '2',
+            helperText: 'Select an item',
+            onChange: (String value) {},
+          ),
           InputText(
             name: 'email',
             label: 'Email',

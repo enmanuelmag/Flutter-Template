@@ -10,7 +10,7 @@ import 'package:flutter_production_boilerplate_riverpod/ui/widgets/sheets/bottom
 
 //define items type for SelectInput, this is a list of items, each item has a label and value property
 class SelectItem {
-  final Widget label;
+  final String label;
   final String value;
   final bool? disabled;
   final Widget? leading;
@@ -57,24 +57,41 @@ class SelectInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField(
+    return FormBuilderField<String>(
       name: name ?? '',
       initialValue: initialValue,
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
-      builder: (FormFieldState<Object?> field) => getInput(context, field),
+      builder: (FormFieldState<String?> field) => getInput(context, field),
     );
+  }
+
+  String getValue(FormFieldState<String?> field) {
+    if (field.value == null) {
+      return '';
+    }
+
+    return items
+        .firstWhere(
+          (SelectItem item) => item.value == initialValue,
+          orElse: () => items.first,
+        )
+        .label;
   }
 
   Widget getInput(
     BuildContext context,
-    FormFieldState<Object?> field,
+    FormFieldState<String?> field,
   ) {
+    TextEditingController controller = TextEditingController(
+      text: getValue(field),
+    );
+
     final List<ListTile> itemsWidget = items
         .map(
           (SelectItem item) => ListTile(
-            title: item.label,
+            title: Text(item.label),
             leading: item.leading,
             trailing: item.trailing,
             visualDensity: VisualDensity.compact,
@@ -86,6 +103,8 @@ class SelectInput extends StatelessWidget {
                 onChange!(item.value);
               }
               field.didChange(item.value);
+
+              controller.text = item.label;
 
               Navigator.pop(context);
             },
@@ -114,6 +133,7 @@ class SelectInput extends StatelessWidget {
                 ),
               );
             },
+            controller: controller,
             enabled: disabled != true,
             readOnly: readOnly ?? false,
             autofocus: autoFocus ?? false,
