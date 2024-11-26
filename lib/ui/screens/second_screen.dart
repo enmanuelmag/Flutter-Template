@@ -124,6 +124,7 @@ class SecondScreen extends StatelessWidget {
           InputText(
             name: 'email',
             label: 'Email',
+            keyboardType: TextInputType.emailAddress,
             validators: [
               FormBuilderValidators.email(),
             ],
