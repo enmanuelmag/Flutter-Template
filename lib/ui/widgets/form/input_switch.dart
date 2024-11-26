@@ -45,7 +45,7 @@ class SwitchCustom extends StatelessWidget {
               ),
             const SizedBox(width: 4),
             Switch(
-              value: field.value as bool? ?? false,
+              value: field.value ?? false,
               onChanged: (v) {
                 if (onChange != null) {
                   onChange!(v);
