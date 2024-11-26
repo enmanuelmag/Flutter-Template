@@ -8,13 +8,15 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
 class SwitchCustom extends StatelessWidget {
   final String? name;
-  final List<FormFieldValidator<String>>? validators;
+  final List<FormFieldValidator<bool>>? validators;
+  final bool? initialValue;
   final String? label;
   final void Function(bool)? onChange;
 
   const SwitchCustom({
     super.key,
     required this.onChange,
+    this.initialValue,
     this.name,
     this.validators,
     this.label,
@@ -22,8 +24,9 @@ class SwitchCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField(
+    return FormBuilderField<bool>(
       name: name ?? '',
+      initialValue: initialValue,
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),

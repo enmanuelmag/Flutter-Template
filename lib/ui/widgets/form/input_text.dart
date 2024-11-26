@@ -12,6 +12,7 @@ class InputText extends StatelessWidget {
   final String label;
   final String? name;
   final List<FormFieldValidator<String>>? validators;
+  final String? initialValue;
   final bool? autoFocus;
   final bool? isCurrency;
   final String? placeholder;
@@ -26,6 +27,7 @@ class InputText extends StatelessWidget {
   const InputText({
     super.key,
     required this.label,
+    this.initialValue,
     this.onChange,
     this.name,
     this.validators,
@@ -42,18 +44,22 @@ class InputText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField(
+    return FormBuilderField<String>(
       name: name ?? '',
+      initialValue: initialValue ?? '',
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
-      builder: (FormFieldState<Object?> field) => getInput(field),
+      builder: (FormFieldState<String?> field) => getInput(field),
     );
   }
 
   Widget getInput(
-    FormFieldState<Object?> field,
+    FormFieldState<String?> field,
   ) {
+    TextEditingController textController = TextEditingController(
+      text: field.value as String? ?? '',
+    );
     List<TextInputFormatter> inputFormatters = <TextInputFormatter>[];
 
     TextInputType parsedKeyboardType = keyboardType ?? TextInputType.text;
@@ -81,6 +87,7 @@ class InputText extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           TextField(
+            controller: textController,
             onChanged: (value) {
               if (onChange != null) {
                 onChange!(value);

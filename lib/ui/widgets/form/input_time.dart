@@ -9,6 +9,7 @@ import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 class InputTime extends StatelessWidget {
   final String label;
   final String? name;
+  final TimeOfDay? initialValue;
   final List<FormFieldValidator<TimeOfDay>>? validators;
   final String? cancelText;
   final String? confirmText;
@@ -24,6 +25,7 @@ class InputTime extends StatelessWidget {
   const InputTime({
     super.key,
     required this.label,
+    this.initialValue,
     this.onChange,
     this.name,
     this.validators,
@@ -42,7 +44,7 @@ class InputTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderField(
       name: name ?? '',
-      initialValue: TimeOfDay.now(),
+      initialValue: initialValue ?? TimeOfDay.now(),
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),

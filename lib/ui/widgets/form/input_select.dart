@@ -28,6 +28,7 @@ class SelectItem {
 class SelectInput extends StatelessWidget {
   final String label;
   final String? name;
+  final String? initialValue;
   final List<FormFieldValidator<String>>? validators;
   final List<SelectItem> items;
   final bool? autoFocus;
@@ -43,6 +44,7 @@ class SelectInput extends StatelessWidget {
     required this.label,
     required this.items,
     required this.onChange,
+    this.initialValue,
     this.name,
     this.validators,
     this.autoFocus,
@@ -57,6 +59,7 @@ class SelectInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderField(
       name: name ?? '',
+      initialValue: initialValue,
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
