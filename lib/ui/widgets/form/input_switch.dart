@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+
+import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
 
 class SwitchCustom extends StatelessWidget {
   final String? name;
