@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_production_boilerplate_riverpod/utils/date.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class InputDate extends StatelessWidget {
   final String label;
@@ -47,27 +46,12 @@ class InputDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<DateTime>(
-      name: name ?? '',
-      initialValue: initialValue ?? DateTime.now(),
-      validator: FormBuilderValidators.compose(
-        validators ?? <String? Function(dynamic)>[],
-      ),
-      builder: (FormFieldState<DateTime> field) => getInput(context, field),
-    );
+    return getInput(context);
   }
 
   Widget getInput(
     BuildContext context,
-    FormFieldState<DateTime> field,
   ) {
-    TextEditingController textController = TextEditingController(
-      text: formatDateTime(
-        dateTime: field.value,
-        formatType: DateFormatType.ddMMyyyy,
-      ),
-    );
-
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
@@ -79,34 +63,18 @@ class InputDate extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
-          TextField(
-            controller: textController,
-            onTap: () async {
-              DateTime? datetime = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: minDate ?? DateTime(2000),
-                lastDate: maxDate ?? DateTime(2100),
-                cancelText: cancelText ?? 'Cancel',
-                confirmText: confirmText ?? 'Confirm',
-                helpText: helperText,
-              );
-
-              if (datetime != null) {
-                if (onChange != null) {
-                  onChange!(datetime);
-                }
-                field.didChange(datetime);
-              }
-            },
+          FormBuilderDateTimePicker(
+            name: name ?? '',
+            initialValue: initialValue,
+            validator: FormBuilderValidators.compose(
+              validators ?? <String? Function(dynamic)>[],
+            ),
             enabled: disabled != true,
-            readOnly: true,
             autofocus: autoFocus ?? false,
             obscureText: obscureText ?? false,
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white.withOpacity(0.1),

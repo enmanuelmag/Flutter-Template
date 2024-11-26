@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_production_boilerplate_riverpod/utils/date.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:flutter_production_boilerplate_riverpod/config/style.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class InputDateRange extends StatelessWidget {
   final String label;
@@ -14,8 +13,6 @@ class InputDateRange extends StatelessWidget {
   final List<FormFieldValidator<DateTimeRange>>? validators;
   final String? cancelText;
   final String? confirmText;
-  final DateTime? minDate;
-  final DateTime? maxDate;
   final bool? autoFocus;
   final String? placeholder;
   final String? helperText;
@@ -32,8 +29,6 @@ class InputDateRange extends StatelessWidget {
     this.onChange,
     this.name,
     this.validators,
-    this.minDate,
-    this.maxDate,
     this.cancelText,
     this.confirmText,
     this.autoFocus,
@@ -47,39 +42,12 @@ class InputDateRange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField(
-      name: name ?? '',
-      initialValue: initialValue ??
-          DateTimeRange(
-            start: DateTime.now(),
-            end: DateTime.now().add(const Duration(days: 7)),
-          ),
-      validator: FormBuilderValidators.compose(
-        validators ?? <String? Function(dynamic)>[],
-      ),
-      builder: (FormFieldState<DateTimeRange?> field) =>
-          getInput(context, field),
-    );
+    return getInput(context);
   }
 
   Widget getInput(
     BuildContext context,
-    FormFieldState<DateTimeRange?> field,
   ) {
-    String startDate = formatDateTime(
-      dateTime: field.value!.start,
-      formatType: DateFormatType.ddMMyyyy,
-    );
-
-    String endDate = formatDateTime(
-      dateTime: field.value!.end,
-      formatType: DateFormatType.ddMMyyyy,
-    );
-
-    TextEditingController textController = TextEditingController(
-      text: '$startDate - $endDate',
-    );
-
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
@@ -91,49 +59,19 @@ class InputDateRange extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
-          TextField(
-            controller: textController,
-            onTap: () async {
-              DateTimeRange? dateRangeTime = await showDateRangePicker(
-                context: context,
-                initialDateRange: DateTimeRange(
-                  start: DateTime.now(),
-                  end: DateTime.now().add(const Duration(days: 7)),
-                ),
-                firstDate: minDate ?? DateTime(2000),
-                lastDate: maxDate ?? DateTime(2100),
-                cancelText: cancelText ?? 'Cancel',
-                confirmText: confirmText ?? 'Confirm',
-                helpText: helperText,
-                builder: (BuildContext context, Widget? child) {
-                  return Theme(
-                    data: Theme.of(context).copyWith(
-                      dialogTheme: DialogTheme(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                      ),
-                    ),
-                    child: child!,
-                  );
-                },
-              );
-
-              if (dateRangeTime != null) {
-                if (onChange != null) {
-                  onChange!(dateRangeTime);
-                }
-                field.didChange(dateRangeTime);
-              }
-            },
+          FormBuilderDateRangePicker(
+            name: name ?? '',
+            firstDate: initialValue?.start ?? DateTime(2000),
+            lastDate: initialValue?.end ?? DateTime(2100),
+            validator: FormBuilderValidators.compose(
+              validators ?? <String? Function(dynamic)>[],
+            ),
             enabled: disabled != true,
-            readOnly: true,
             autofocus: autoFocus ?? false,
             obscureText: obscureText ?? false,
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: field.errorText ?? error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white.withOpacity(0.1),

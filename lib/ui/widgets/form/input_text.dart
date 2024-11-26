@@ -22,7 +22,7 @@ class InputText extends StatelessWidget {
   final bool? obscureText;
   final bool? readOnly;
   final TextInputType? keyboardType;
-  final void Function(String)? onChange;
+  final void Function(String?)? onChange;
 
   const InputText({
     super.key,
@@ -44,22 +44,19 @@ class InputText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<String>(
-      name: name ?? '',
-      initialValue: initialValue ?? '',
-      validator: FormBuilderValidators.compose(
-        validators ?? <String? Function(dynamic)>[],
-      ),
-      builder: (FormFieldState<String?> field) => getInput(field),
-    );
+    // return FormBuilderField<String>(
+    //   name: name ?? '',
+    //   initialValue: initialValue ?? '',
+    //   validator: FormBuilderValidators.compose(
+    //     validators ?? <String? Function(dynamic)>[],
+    //   ),
+    //   builder: (FormFieldState<String?> field) => getInput(field),
+    // );
+
+    return getInput();
   }
 
-  Widget getInput(
-    FormFieldState<String?> field,
-  ) {
-    TextEditingController textController = TextEditingController(
-      text: field.value as String? ?? '',
-    );
+  Widget getInput() {
     List<TextInputFormatter> inputFormatters = <TextInputFormatter>[];
 
     TextInputType parsedKeyboardType = keyboardType ?? TextInputType.text;
@@ -86,13 +83,15 @@ class InputText extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
-          TextField(
-            controller: textController,
+          FormBuilderTextField(
+            name: name ?? '',
+            validator: FormBuilderValidators.compose(
+              validators ?? <String? Function(dynamic)>[],
+            ),
             onChanged: (value) {
               if (onChange != null) {
                 onChange!(value);
               }
-              field.didChange(value);
             },
             inputFormatters: inputFormatters,
             enabled: disabled != true,
@@ -103,7 +102,7 @@ class InputText extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               isDense: true,
-              errorText: field.errorText ?? error,
+              errorText: error,
               hintText: placeholder,
               helperText: helperText,
               fillColor: Colors.white.withOpacity(0.1),

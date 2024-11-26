@@ -44,7 +44,7 @@ class InputTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderField(
       name: name ?? '',
-      initialValue: initialValue ?? TimeOfDay.now(),
+      initialValue: initialValue,
       validator: FormBuilderValidators.compose(
         validators ?? <String? Function(dynamic)>[],
       ),
