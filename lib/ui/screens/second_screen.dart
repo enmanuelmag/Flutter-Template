@@ -119,6 +119,7 @@ class SecondScreen extends StatelessWidget {
       initialValue: <String, dynamic>{
         'name': 'John Doe',
         'email': 'test@test.com',
+        'select': '3',
         'date': DateTime.now(),
         'time': TimeOfDay.now(),
         'switch': true,
@@ -137,7 +138,6 @@ class SecondScreen extends StatelessWidget {
             name: 'select',
             label: 'Select',
             items: items,
-            initialValue: '2',
             helperText: 'Select an item',
             validators: [
               FormBuilderValidators.required(),

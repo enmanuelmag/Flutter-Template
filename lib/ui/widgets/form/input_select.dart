@@ -74,7 +74,7 @@ class SelectInput extends StatelessWidget {
 
     return items
         .firstWhere(
-          (SelectItem item) => item.value == initialValue,
+          (SelectItem item) => item.value == field.value,
           orElse: () => items.first,
         )
         .label;
