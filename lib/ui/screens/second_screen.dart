@@ -13,23 +13,28 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Theme.of(context).colorScheme.surface,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        physics: const BouncingScrollPhysics(),
-        children: <Widget>[
-          const Header(text: 'bottom_nav_second'),
-          const TextDivider(
-            text: 'Form Validation',
-            horizontal: 8,
-          ),
-          getForm(),
-          const TextDivider(
-            text: 'Inputs',
-            horizontal: 8,
-          ),
-          getInputs(),
-          const SizedBox(height: 36),
-        ],
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          physics: const BouncingScrollPhysics(),
+          children: <Widget>[
+            const Header(text: 'bottom_nav_second'),
+            const TextDivider(
+              text: 'Form Validation',
+              horizontal: 8,
+            ),
+            getForm(),
+            const TextDivider(
+              text: 'Inputs',
+              horizontal: 8,
+            ),
+            getInputs(),
+            const SizedBox(height: 36),
+          ],
+        ),
       ),
     );
   }
