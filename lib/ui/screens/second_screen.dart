@@ -139,7 +139,9 @@ class SecondScreen extends StatelessWidget {
             items: items,
             initialValue: '2',
             helperText: 'Select an item',
-            onChange: (String value) {},
+            validators: [
+              FormBuilderValidators.required(),
+            ],
           ),
           InputText(
             name: 'email',

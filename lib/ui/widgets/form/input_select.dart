@@ -43,7 +43,7 @@ class SelectInput extends StatelessWidget {
     super.key,
     required this.label,
     required this.items,
-    required this.onChange,
+    this.onChange,
     this.initialValue,
     this.name,
     this.validators,
