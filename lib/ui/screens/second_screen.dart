@@ -129,7 +129,7 @@ class SecondScreen extends StatelessWidget {
           InputText(
             name: 'name',
             label: 'Name',
-            validators: [
+            validators: <FormFieldValidator<String>>[
               FormBuilderValidators.required(),
             ],
           ),
@@ -139,7 +139,7 @@ class SecondScreen extends StatelessWidget {
             label: 'Select',
             items: items,
             helperText: 'Select an item',
-            validators: [
+            validators: <FormFieldValidator<String>>[
               FormBuilderValidators.required(),
             ],
           ),
@@ -147,21 +147,21 @@ class SecondScreen extends StatelessWidget {
             name: 'email',
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
-            validators: [
+            validators: <FormFieldValidator<String>>[
               FormBuilderValidators.email(),
             ],
           ),
           InputDate(
             name: 'date',
             label: 'Date',
-            validators: [
+            validators: <FormFieldValidator<DateTime>>[
               FormBuilderValidators.required(),
             ],
           ),
           InputTime(
             name: 'time',
             label: 'Time',
-            validators: [
+            validators: <FormFieldValidator<TimeOfDay>>[
               FormBuilderValidators.required(),
             ],
           ),
