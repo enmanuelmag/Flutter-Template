@@ -54,7 +54,7 @@ class SwitchCustom extends StatelessWidget {
                 if (onChange != null) {
                   onChange!(v);
                 }
-                field.didChange(!v);
+                field.didChange(v);
               },
             ),
           ],
